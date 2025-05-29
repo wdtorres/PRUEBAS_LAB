@@ -31,6 +31,16 @@ jobs:
       - name: Start workflow message
         run: echo "Now running build workflow."
 
+  github_info:
+    runs-on: ubuntu-latest
+    steps:
+        - env:
+            GITHUB_CONTEXT: ${{ toJson(github) }}
+          run: |
+            echo Triggered Event: ${{ github.event_name }}
+            echo Current Repository: ${{ github.repository }}
+            echo "$GITHUB_CONTEXT"
+            
       # Runs a set of commands using the runners shell
       - name: Ending workflow message
         run: |
